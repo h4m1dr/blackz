@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پلتفرم مدیریت ماپرا - نسخه محلی</title>
+    <!-- Load Vazirmatn Persian font for clean typography -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="theme-dark">
+    <div id="root">
+        <div id="main-container" class="main-container">
+            <div id="dashboard-wrapper" class="dashboard-container sidebar-open">
+                
+                <!-- RIGHT SIDEBAR NAVIGATION -->
+                <nav class="sidebar-nav">
+                    <div class="sidebar-container">
+                        <!-- Sidebar Top Logo & Collapse Switch -->
+                        <div class="sidebar-top">
+                            <div class="sidebar-mupra-logo">
+                                <span class="mupra-brand-text">ماپرا</span>
+                                <span class="mupra-brand-sub">MUPRA</span>
+                                <svg class="app-changer-icon" viewBox="0 0 24 24" width="20" height="20">
+                                    <path fill="#98A2B3" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+                                </svg>
+                            </div>
+                            <button id="sidebar-toggle-btn" class="icon-btn" title="بستن منو">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect x="3" y="3" width="18" height="18" rx="4" stroke="#98A2B3" stroke-width="1.5"/>
+                                    <path d="M15 3V21" stroke="#98A2B3" stroke-width="1.5"/>
+                                    <path d="M10 9L13 12L10 15" stroke="#98A2B3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- 1. MAIN SIDEBAR MENU (Level 0) -->
+                        <ul id="main-sidebar-list" class="sidebar-menu-list hidden">
+                            <li class="sidebar-item" onclick="switchView('dashboard')">
+                                <a href="javascript:void(0)" id="nav-dashboard">
+                                    <div class="menu-sidebar-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M3 6.5C3 3.87 3.03 3 6.5 3C9.97 3 10 3.87 10 6.5C10 9.13 10.01 10 6.5 10C2.99 10 3 9.13 3 6.5Z" stroke="#98A2B3" stroke-width="1.5"/>
+                                            <path d="M14 6.5C14 3.87 14.03 3 17.5 3C20.97 3 21 3.87 21 6.5C21 9.13 21.01 10 17.5 10C13.99 10 14 9.13 14 6.5Z" stroke="#98A2B3" stroke-width="1.5"/>
+                                            <path d="M3 17.5C3 14.87 3.03 14 6.5 14C9.97 14 10 14.87 10 17.5C10 20.13 10.01 21 6.5 21C2.99 21 3 20.13 3 17.5Z" stroke="#98A2B3" stroke-width="1.5"/>
+                                            <path d="M14 17.5C14 14.87 14.03 14 17.5 14C20.97 14 21 14.87 21 17.5C21 20.13 21.01 21 17.5 21C13.99 21 14 20.13 14 17.5Z" stroke="#667085" stroke-width="1.5"/>
+                                        </svg>
+                                    </div>
+                                    <span class="title">داشبورد</span>
+                                </a>
+                            </li>
+                            <hr class="navbar-divider">
+                            <span class="navbar-category">کسب‌وکار</span>
+                            <li class="sidebar-item" onclick="openSubMenu('products')">
+                                <a href="javascript:void(0)">
+                                    <div class="menu-sidebar-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M4.95 5.06L4.14 7.09C3.86 7.8 3.71 8.56 3.71 9.33L3.7 16.72C3.69 18.99 4.72 20.61 7 20.61L17.67 20.63C19.95 20.63 20.96 19.03 20.96 16.75L20.98 9.35C20.98 8.57 20.83 7.79 20.54 7.07L19.72 5.05C19.31 4.04 18.33 3.37 17.24 3.37H7.44C6.34 3.37 5.36 4.04 4.95 5.06Z" stroke="#98A2B3" stroke-width="1.44"/>
+                                            <path d="M3.83 8.17H20.84" stroke="#98A2B3" stroke-width="1.44"/>
+                                        </svg>
+                                    </div>
+                                    <span class="title">محصولات</span>
+                                    <svg class="submenu-arrow" viewBox="0 0 24 24" width="18" height="18">
+                                        <path fill="#98A2B3" d="M14.71 15.88 10.83 12l3.88-3.88c.39-.39.39-1.02 0-1.41a.9959.9959 0 0 0-1.41 0L8.71 11.3c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0 .38-.39.39-1.03 0-1.42"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="javascript:void(0)">
+                                    <div class="menu-sidebar-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M10.3 20.25L8.26 19.41C7.81 19.23 7.31 19.25 6.88 19.45L6.16 19.8C5.4 20.16 4.52 19.61 4.52 18.77L4.53 7.1C4.53 4.79 5.81 3.36 8.11 3.36H15.06C17.37 3.36 18.63 4.79 18.63 7.1V11.12" stroke="#98A2B3" stroke-width="1.44" stroke-linecap="round"/>
+                                            <path d="M13.55 9.03H8.89M12 12.65H8.89" stroke="#98A2B3" stroke-width="1.44" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                    <span class="title">صورت‌حساب‌های باز</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="javascript:void(0)">
+                                    <div class="menu-sidebar-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M7.26 19.59L6.53 19.94C5.77 20.3 4.88 19.74 4.88 18.89L4.89 7.13C4.89 4.8 6.18 3.36 8.5 3.36H15.51C17.84 3.36 19.1 4.8 19.1 7.13L19.12 18.89C19.12 19.74 18.23 20.3 17.47 19.93L16.74 19.59C16.31 19.38 15.8 19.36 15.36 19.55L13.3 20.39C12.47 20.73 11.53 20.73 10.7 20.39L8.65 19.55C8.2 19.36 7.7 19.38 7.26 19.59Z" stroke="#98A2B3" stroke-width="1.44"/>
+                                        </svg>
+                                    </div>
+                                    <span class="title">لیست صورت‌حساب‌ها</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- 2. PRODUCTS SUB-MENU (States menu100 to menu106) -->
+                        <ul id="products-submenu-list" class="sub-menu">
+                            <li class="sidebar-item" onclick="backToMainMenu()">
+                                <a href="javascript:void(0)" class="go-back-link">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="sidebar-go-back">
+                                        <path d="M13.5469 5.57422L20.0002 11.9998L13.5469 18.4265" stroke="#98A2B3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M20 12H4" stroke="#98A2B3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    <span>بازگشت به منو</span>
+                                </a>
+                            </li>
+                            <li><hr class="navbar-divider"></li>
+                            <li class="sidebar-item sub-menu-item active" id="sub-menu100" onclick="switchView('menu100')">
+                                <a href="javascript:void(0)"><span class="title">دسته‌بندی</span></a>
+                            </li>
+                            <li class="sidebar-item sub-menu-item" id="sub-menu101" onclick="switchView('menu101')">
+                                <a href="javascript:void(0)"><span class="title">محصولات</span></a>
+                            </li>
+                            <li class="sidebar-item sub-menu-item" id="sub-menu103" onclick="switchView('menu103')">
+                                <a href="javascript:void(0)"><span class="title">افزودنی‌های محصول</span></a>
+                            </li>
+                            <li class="sidebar-item sub-menu-item" id="sub-menu104" onclick="switchView('menu104')">
+                                <a href="javascript:void(0)"><span class="title">دستورالعمل‌های تولید</span></a>
+                            </li>
+                            <li>
+                                <hr class="navbar-divider">
+                                <span class="navbar-category">گزارش‌ها</span>
+                            </li>
+                            <li class="sidebar-item sub-menu-item" id="sub-menu105" onclick="switchView('menu105')">
+                                <a href="javascript:void(0)"><span class="title">گزارش فروش محصول</span></a>
+                            </li>
+                            <li class="sidebar-item sub-menu-item" id="sub-menu106" onclick="switchView('menu106')">
+                                <a href="javascript:void(0)"><span class="title">گزارش فروش دسته‌بندی‌ها</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- MAIN BODY & TOP HEADER -->
+                <div class="dashboard-body">
+                    
+                    <!-- TOP HEADER -->
+                    <header class="top-header">
+                        <div class="search-container">
+                            <input type="text" name="search" placeholder="جستجو در ماپرا..." autocomplete="off" class="header-search-input">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="search-icon">
+                                <path d="M11.7659 20.7554C16.7301 20.7554 20.7545 16.7311 20.7545 11.7669C20.7545 6.80263 16.7301 2.77832 11.7659 2.77832C6.80166 2.77832 2.77734 6.80263 2.77734 11.7669C2.77734 16.7311 6.80166 20.7554 11.7659 20.7554Z" stroke="#98A2B3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M18.0176 18.4854L21.5416 22.0002" stroke="#98A2B3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+
+                        <div class="header-spacer"></div>
+
+                        <div class="profile-and-support">
+                            <a class="renewal-badge" href="javascript:void(0)">
+                                <span>مانده: <strong class="orange-text">۴ روز</strong></span>
+                                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                                    <path d="M10.8333 1.66699L2.5 11.667H10L9.16667 18.3337L17.5 8.33366H10L10.8333 1.66699Z" stroke="#2E73CE" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                <span>خرید</span>
+                            </a>
+
+                            <div class="header-icons-group">
+                                <!-- Support Button -->
+                                <button class="header-icon-btn" title="پشتیبانی و آموزش">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M19.8331 15.0367C20.304 13.9771 20.5686 12.7998 20.5686 11.5641C20.5686 6.83352 16.7283 3 11.9977 3C7.27392 3 3.43359 6.83352 3.43359 11.5641C3.43359 12.6383 3.63208 13.6677 3.99305 14.6105" stroke="#98A2B3" stroke-width="1.5" stroke-linecap="round"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.49732 17.4735C5.99256 18.3317 7.09008 18.6265 7.94824 18.1303C8.80446 17.635 9.0983 16.5395 8.60402 15.6813L7.09689 13.0708C6.60262 12.2136 5.50608 11.9198 4.64889 12.4131L4.43775 12.5347C3.8997 12.8451 3.62726 13.4843 3.81116 14.0778C4.13905 15.1355 4.69851 16.2738 5.49732 17.4735Z" stroke="#98A2B3" stroke-width="1.5"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5088 17.4735C18.0135 18.3317 16.916 18.6265 16.0579 18.1303C15.2016 17.635 14.9078 16.5395 15.4021 15.6813L16.9092 13.0708C17.4035 12.2136 18.5 11.9198 19.3572 12.4131L19.5684 12.5347C20.1064 12.8451 20.3788 13.4843 20.1949 14.0778C19.8671 15.1355 19.3076 16.2738 18.5088 17.4735Z" stroke="#98A2B3" stroke-width="1.5"></path>
+                                    </svg>
+                                </button>
+
+                                <!-- Notifications Bell -->
+                                <button class="header-icon-btn" title="پیام‌های سیستم">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.06646 11.1345C6.06646 7.85745 8.72274 5.20117 11.9998 5.20117C15.2768 5.20117 17.9331 7.85745 17.9331 11.1345L17.9341 12.3264C17.9341 13.0309 18.0888 13.7266 18.3894 14.3639L18.8107 15.259C19.4539 16.6271 18.4556 18.1994 16.9445 18.1994H7.05502C5.54299 18.1994 4.54567 16.6271 5.18882 15.259L5.61012 14.3639C5.90981 13.7266 6.06549 13.0309 6.06549 12.3264L6.06646 11.1345Z" stroke="#98A2B3" stroke-width="1.5"></path>
+                                        <path d="M9.19922 18.2002C9.19922 19.7463 10.4534 21.0005 11.9995 21.0005C13.5466 21.0005 14.7998 19.7463 14.7998 18.2002" stroke="#98A2B3" stroke-width="1.5"></path>
+                                    </svg>
+                                </button>
+
+                                <!-- Profile Avatar & Dropdown -->
+                                <div class="profile-dropdown-wrapper">
+                                    <div class="profile-trigger" onclick="toggleProfileMenu()">
+                                        <div class="avatar-circle">م‌پ</div>
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M12 6L8 10L4 6" stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <!-- Profile Popup Menu -->
+                                    <div id="profile-popup" class="profile-dropdown-menu hidden">
+                                        <div class="restaurant-info">
+                                            <div class="avatar-circle large">م‌پ</div>
+                                            <div class="merchant-details">
+                                                <h3>مشتی پلاس</h3>
+                                                <p>09382060198</p>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="printer-status-row">
+                                            <span>وضعیت چاپگر محلی:</span>
+                                            <span class="status-badge connected">آماده به کار</span>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="theme-selector">
+                                            <div class="theme-option" onclick="setTheme('light')">حالت روز</div>
+                                            <div class="theme-option selected" onclick="setTheme('dark')">حالت شب</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- MAIN CONTENT AREA -->
+                    <div class="main-content">
+                        <div class="main-body">
+
+                            <!-- ========================================== -->
+                            <!-- VIEW: STATE menu100 (دسته‌بندی)             -->
+                            <!-- ========================================== -->
+                            <section id="view-menu100" class="view-section active">
+                                <div class="extra-btns-table-header">
+                                    <div class="table-title">
+                                        <span>دسته‌بندی</span>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="info-icon">
+                                            <path d="M3 12C3 16.9699 7.02908 21 12 21C16.9709 21 21 16.9699 21 12C21 7.02908 16.9709 3 12 3C7.02908 3 3 7.02908 3 12Z" stroke="#98A2B3" stroke-width="1.5"></path>
+                                            <path d="M12.0057 15.6932V11.3936M12 8.35426V8.29102" stroke="#98A2B3" stroke-width="1.5" stroke-linecap="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="table-operation">
+                                        <button class="filter-btn">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                                <path d="M10.33 16.5938H4.0293M13.1406 6.90039H19.4413" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                                                <circle cx="6.36" cy="6.85" r="2.35" stroke="currentColor" stroke-width="1.5"></circle>
+                                                <circle cx="17.64" cy="16.55" r="2.35" stroke="currentColor" stroke-width="1.5"></circle>
+                                            </svg>
+                                            <span>فیلترها</span>
+                                        </button>
+                                        <div class="vertical-divider"></div>
+                                        <!-- Excel Export / Import Icons -->
+                                        <button class="excel-btn" title="خروجی اکسل">
+                                            <svg width="26" height="25" viewBox="0 0 27 26" fill="none">
+                                                <rect x="6" y="1.5" width="18" height="21" rx="2" fill="#2FB776"></rect>
+                                                <rect y="5.25" width="13.5" height="13.5" rx="2" fill="#185A30"></rect>
+                                                <path d="M9.75 15.75L7.6366 11.925L9.65722 8.25H8.00773L6.76031 10.5964L5.53351 8.25H3.83247L5.8634 11.925L3.75 15.75H5.39948L6.72938 13.2643L8.04897 15.75H9.75Z" fill="white"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="add-green-btn" onclick="openAddModal('category')">
+                                            <span>دسته‌بندی جدید</span>
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="mupra-table-paper">
+                                    <div class="mupra-table-container">
+                                        <table class="mupra-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>عملیات</th>
+                                                    <th>کد دسته‌بندی <span class="sort-arrows">⇅</span></th>
+                                                    <th>نام دسته‌بندی <span class="sort-arrows">⇅</span></th>
+                                                    <th>اولویت نمایش <span class="sort-arrows">⇅</span></th>
+                                                    <th>دسته‌بندی پیش‌فرض <span class="sort-arrows">⇅</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="categories-tbody">
+                                                <tr>
+                                                    <td>
+                                                        <button class="three-dots-btn">•••</button>
+                                                    </td>
+                                                    <td>208374937</td>
+                                                    <td>دسته 1</td>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#FCFCFD">
+                                                            <path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                                                        </svg>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- Table Footer Pagination -->
+                                    <div class="bottom-toolbar-table">
+                                        <div class="pagination-right">
+                                            <span class="record-count" id="cat-record-count">1 رکورد</span>
+                                            <span class="rows-label">تعداد نمایش</span>
+                                            <select class="rows-select">
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select>
+                                            <button class="table-config-btn">تنظیمات جدول</button>
+                                        </div>
+                                        <div class="pagination-left">
+                                            <button class="page-btn" disabled>صفحه قبل</button>
+                                            <button class="page-btn active">1</button>
+                                            <button class="page-btn" disabled>صفحه بعد</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- ========================================== -->
+                            <!-- VIEW: STATE menu101 & 102 (محصولات)        -->
+                            <!-- ========================================== -->
+                            <section id="view-menu101" class="view-section">
+                                <div class="extra-btns-table-header">
+                                    <div class="table-title">
+                                        <span>محصولات</span>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="info-icon">
+                                            <path d="M3 12C3 16.9699 7.02908 21 12 21C16.9709 21 21 16.9699 21 12C21 7.02908 16.9709 3 12 3C7.02908 3 3 7.02908 3 12Z" stroke="#98A2B3" stroke-width="1.5"></path>
+                                            <path d="M12.0057 15.6932V11.3936M12 8.35426V8.29102" stroke="#98A2B3" stroke-width="1.5" stroke-linecap="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="table-operation">
+                                        <button class="filter-btn">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                                <path d="M10.33 16.5938H4.0293M13.1406 6.90039H19.4413" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                                                <circle cx="6.36" cy="6.85" r="2.35" stroke="currentColor" stroke-width="1.5"></circle>
+                                                <circle cx="17.64" cy="16.55" r="2.35" stroke="currentColor" stroke-width="1.5"></circle>
+                                            </svg>
+                                            <span>فیلترها</span>
+                                        </button>
+                                        <div class="vertical-divider"></div>
+                                        <button class="bulk-action-dropdown">
+                                            <span>عملیات دسته‌جمعی</span>
+                                            <span>▾</span>
+                                        </button>
+                                        <button class="excel-btn" title="خروجی اکسل">
+                                            <svg width="26" height="25" viewBox="0 0 27 26" fill="none">
+                                                <rect x="6" y="1.5" width="18" height="21" rx="2" fill="#2FB776"></rect>
+                                                <rect y="5.25" width="13.5" height="13.5" rx="2" fill="#185A30"></rect>
+                                                <path d="M9.75 15.75L7.6366 11.925L9.65722 8.25H8.00773L6.76031 10.5964L5.53351 8.25H3.83247L5.8634 11.925L3.75 15.75H5.39948L6.72938 13.2643L8.04897 15.75H9.75Z" fill="white"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="add-green-btn" onclick="openAddModal('product')">
+                                            <span>محصول جدید</span>
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="mupra-table-paper">
+                                    <div class="mupra-table-container">
+                                        <table class="mupra-table">
+                                            <thead>
+                                                <tr>
+                                                    <th><input type="checkbox" aria-label="انتخاب همه"></th>
+                                                    <th>عملیات</th>
+                                                    <th>نام محصول <span class="sort-arrows">⇅</span></th>
+                                                    <th>دسته‌بندی <span class="sort-arrows">⇅</span></th>
+                                                    <th>قیمت (تومان) <span class="sort-arrows">⇅</span></th>
+                                                    <th>ارزش افزوده (درصد) <span class="sort-arrows">⇅</span></th>
+                                                    <th>توضیحات <span class="sort-arrows">⇅</span></th>
+                                                    <th>بسته‌بندی محصول (تومان) <span class="sort-arrows">⇅</span></th>
+                                                    <th>وضعیت <span class="sort-arrows">⇅</span></th>
+                                                    <th>اولویت <span class="sort-arrows">⇅</span></th>
+                                                    <th>زمان آماده‌سازی(دقیقه) <span class="sort-arrows">⇅</span></th>
+                                                    <th>کد محصول <span class="sort-arrows">⇅</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="products-tbody">
+                                                <tr>
+                                                    <td><input type="checkbox"></td>
+                                                    <td><button class="three-dots-btn">•••</button></td>
+                                                    <td>محصول 1</td>
+                                                    <td>دسته 1</td>
+                                                    <td>9,000</td>
+                                                    <td>0</td>
+                                                    <td>-</td>
+                                                    <td>1,000</td>
+                                                    <td><span class="status-active">فعال</span></td>
+                                                    <td>1</td>
+                                                    <td>-</td>
+                                                    <td>x001</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="bottom-toolbar-table">
+                                        <div class="pagination-right">
+                                            <span class="record-count" id="prod-record-count">1 رکورد</span>
+                                            <span class="rows-label">تعداد نمایش</span>
+                                            <select class="rows-select">
+                                                <option value="50">50</option>
+                                            </select>
+                                            <button class="table-config-btn">تنظیمات جدول</button>
+                                        </div>
+                                        <div class="pagination-left">
+                                            <button class="page-btn" disabled>صفحه قبل</button>
+                                            <button class="page-btn active">1</button>
+                                            <button class="page-btn" disabled>صفحه بعد</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- ========================================== -->
+                            <!-- VIEW: STATE menu103 (افزودنی‌های محصول)    -->
+                            <!-- ========================================== -->
+                            <section id="view-menu103" class="view-section">
+                                <div class="extra-btns-table-header">
+                                    <div class="table-title">
+                                        <span>افزودنی</span>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="info-icon">
+                                            <path d="M3 12C3 16.9699 7.02908 21 12 21C16.9709 21 21 16.9699 21 12C21 7.02908 16.9709 3 12 3C7.02908 3 3 7.02908 3 12Z" stroke="#98A2B3" stroke-width="1.5"></path>
+                                            <path d="M12.0057 15.6932V11.3936M12 8.35426V8.29102" stroke="#98A2B3" stroke-width="1.5" stroke-linecap="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="table-operation">
+                                        <button class="filter-btn">
+                                            <span>فیلترها</span>
+                                        </button>
+                                        <div class="vertical-divider"></div>
+                                        <button class="bulk-action-dropdown">
+                                            <span>عملیات دسته‌جمعی</span>
+                                            <span>▾</span>
+                                        </button>
+                                        <button class="add-green-btn" onclick="openAddModal('additive')">
+                                            <span>افزودنی جدید</span>
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="mupra-table-paper">
+                                    <div class="mupra-table-container">
+                                        <table class="mupra-table">
+                                            <thead>
+                                                <tr>
+                                                    <th><input type="checkbox"></th>
+                                                    <th>عملیات</th>
+                                                    <th>نام افزودنی <span class="sort-arrows">⇅</span></th>
+                                                    <th>کد افزودنی <span class="sort-arrows">⇅</span></th>
+                                                    <th>قیمت (تومان) <span class="sort-arrows">⇅</span></th>
+                                                    <th>وضعیت <span class="sort-arrows">⇅</span></th>
+                                                    <th>توضیحات <span class="sort-arrows">⇅</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="additives-tbody">
+                                                <tr>
+                                                    <td colspan="7" class="empty-table-msg">موردی برای نمایش نمی باشد.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="bottom-toolbar-table">
+                                        <div class="pagination-right">
+                                            <span class="record-count">0 رکورد</span>
+                                            <span class="rows-label">تعداد نمایش</span>
+                                            <select class="rows-select"><option value="50">50</option></select>
+                                            <button class="table-config-btn">تنظیمات جدول</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- ========================================== -->
+                            <!-- VIEW: STATE menu104 (دستورالعمل‌های تولید) -->
+                            <!-- ========================================== -->
+                            <section id="view-menu104" class="view-section">
+                                <div class="no-access-box">
+                                    <h3>شما به دستورالعمل‌های تولید دسترسی ندارید.</h3>
+                                    <p>در نسخه ابری ماپرا این بخش قفل است، اما در نسخه محلی شما می‌توانید آن را فعال کنید.</p>
+                                    <button class="add-green-btn">فعال‌سازی فرمول تولید (BOM)</button>
+                                </div>
+                            </section>
+
+                            <!-- ========================================== -->
+                            <!-- VIEW: STATE menu105 & 106 (گزارش‌ها)       -->
+                            <!-- ========================================== -->
+                            <section id="view-menu105" class="view-section">
+                                <div class="extra-btns-table-header">
+                                    <div class="table-title">گزارش فروش محصولات</div>
+                                    <div class="table-operation">
+                                        <button class="filter-btn"><span>فیلترها</span></button>
+                                        <button class="add-green-btn"><span>جمع‌بندی</span></button>
+                                    </div>
+                                </div>
+                                <div class="mupra-table-paper">
+                                    <div class="mupra-table-container">
+                                        <table class="mupra-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>کد</th>
+                                                    <th>عنوان</th>
+                                                    <th>مقدار</th>
+                                                    <th>حق سرویس(تومان)</th>
+                                                    <th>مالیات(تومان)</th>
+                                                    <th>تخفیف(تومان)</th>
+                                                    <th>تخفیف باشگاه(تومان)</th>
+                                                    <th>هزینه بسته‌بندی(تومان)</th>
+                                                    <th>سود(تومان)</th>
+                                                    <th>هزینه ارسال(تومان)</th>
+                                                    <th>قیمت(تومان)</th>
+                                                    <th>مبلغ نهایی(تومان)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td colspan="12" class="empty-table-msg">موردی برای نمایش نمی باشد.</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section id="view-menu106" class="view-section">
+                                <div class="extra-btns-table-header">
+                                    <div class="table-title">گزارش فروش دسته‌بندی محصول</div>
+                                    <div class="table-operation">
+                                        <button class="filter-btn"><span>فیلترها</span></button>
+                                        <button class="add-green-btn"><span>جمع‌بندی</span></button>
+                                    </div>
+                                </div>
+                                <div class="mupra-table-paper">
+                                    <div class="mupra-table-container">
+                                        <table class="mupra-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>عنوان</th>
+                                                    <th>مقدار</th>
+                                                    <th>حق سرویس(تومان)</th>
+                                                    <th>مالیات(تومان)</th>
+                                                    <th>تخفیف(تومان)</th>
+                                                    <th>تخفیف باشگاه(تومان)</th>
+                                                    <th>هزینه بسته‌بندی</th>
+                                                    <th>سود(تومان)</th>
+                                                    <th>هزینه ارسال(تومان)</th>
+                                                    <th>قیمت(تومان)</th>
+                                                    <th>مبلغ نهایی(تومان)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td colspan="11" class="empty-table-msg">موردی برای نمایش نمی باشد.</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUICK ADD MODAL FOR TESTING UI INTERACTION -->
+    <div id="quick-modal" class="modal-backdrop hidden">
+        <div class="modal-card">
+            <h3 id="modal-title">افزودن آیتم جدید</h3>
+            <div class="modal-form" id="modal-body-inputs"></div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">انصراف</button>
+                <button class="add-green-btn" id="modal-save-btn">ذخیره</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
